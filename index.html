@@ -12,7 +12,7 @@
     <script type="text/javascript">
       $( document ).ready (
       function() {
-      $.getJSON("http://sessions.wnyc.net/session_id", function( data) { alert(data["id"]);});
+      $.getJSON("http://sessions.wnyc.net/session_id", function( data) { $( ".branding" ).text("Cookie free session tracking, #" + data["id"]);});
       }
       )
       
@@ -26,7 +26,7 @@
     <header>
       <div class="container">
         <h1>Etag-tracker</h1>
-        <h2 id="paste_id">Use etags instead of cookies to track sessions</h2>
+        <h2 class="branding">Cookie free session tracking</h2>
 
         <section id="downloads">
           <a href="https://github.com/wnyc/etag-tracker/zipball/master" class="btn">Download as .zip</a>
@@ -43,10 +43,28 @@
 <a name="etag-session" class="anchor" href="#etag-session"><span class="octicon octicon-link"></span></a>etag-session</h1>
 
 <p>A simple cross platform session_id tracker that uses etags instead of
-cookies.</p>
+cookies.  Install your own server or feel free to use ours: </p>
 
+<pre><code>   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/j\
+query/1.4.3/jquery.min.js"></script>
+    &lt;script type="text/javascript"&gt;
+      $( document ).ready (
+        function() {
+          $.getJSON("http://sessions.wnyc.net/session_id", 
+                    function( data) { 
+                      alert("You are session #" +  data["id"]);
+                    }
+          );
+        }
+      )
+
+    &lt;/script&gt;
+</code></pre>
 <h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>If you want to run your own etag-tracker server, simply download
+and install</p>
 
 <pre><code>git clone git@github.com:wnyc/etag-tracker.git
 cd etag-tracker/server
@@ -54,12 +72,7 @@ make
 </code></pre>
 
 <h2>
-<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<p>Point your browser or ajax call to <code>http://example.com/session_id</code>.
-Receive json that looks like this <code>{"id": "79dbefb1e692ba4416"}</code>.</p>
-
-<h2>
 <a name="how-does-it-work" class="anchor" href="#how-does-it-work"><span class="octicon octicon-link"></span></a>How does it work?</h2>
 
 <p>Its pretty dumb actually.  When you make a call to the etag-tracker
