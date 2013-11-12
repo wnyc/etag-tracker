@@ -93,7 +93,7 @@ int main(void) {
   struct mg_context *ctx;
 
   // List of options. Last element must be NULL.
-  const char *options[] = {"listening_ports", "8080", NULL};
+  const char *options[] = {"listening_ports", "80", NULL};
 
   // Start the web server.
   ctx = mg_start(options, &event_handler, NULL);
