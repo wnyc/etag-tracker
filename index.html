@@ -7,6 +7,16 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    <script type="text/javascript">
+      $( document ).ready (
+      function() {
+      $.getJSON("http://sessions.wnyc.net/session_id", function( data) { alert(data["id"]);});
+      }
+      )
+      
+    </script>
 
     <title>Etag-tracker by wnyc</title>
   </head>
@@ -16,12 +26,13 @@
     <header>
       <div class="container">
         <h1>Etag-tracker</h1>
-        <h2>Use etags instead of cookies to track sessions. </h2>
+        <h2 id="paste_id">Use etags instead of cookies to track sessions</h2>
 
         <section id="downloads">
           <a href="https://github.com/wnyc/etag-tracker/zipball/master" class="btn">Download as .zip</a>
           <a href="https://github.com/wnyc/etag-tracker/tarball/master" class="btn">Download as .tar.gz</a>
           <a href="https://github.com/wnyc/etag-tracker" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+
         </section>
       </div>
     </header>
