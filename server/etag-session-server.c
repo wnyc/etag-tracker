@@ -59,7 +59,7 @@ static int event_handler(struct mg_event *event) {
     content = "Something seems wrong with our random number generator.";
     mg_printf(event->conn,
         "HTTP/1.1 503 Error\r\n"
-        "Content-Type: application/json\r\n"
+        "Content-Type: text/plain\r\n"
 	"Content-Length: %lud\r\n"        // Always set Content-Length
         "\r\n"
 	      "%s",
@@ -73,10 +73,10 @@ static int event_handler(struct mg_event *event) {
 	      );    
     return 1;
   gimmie_a_404: ;
-    content = "<h1>404 Lost</h1><img src=\"lost.jpg\">"
+    content = "404 Not Found";
     mg_printf(event->conn,
-        "HTTP/1.1 503 Error\r\n"
-        "Content-Type: application/json\r\n"
+        "HTTP/1.1 404 Not Found\r\n"
+        "Content-Type: text/plain\r\n"
 	"Content-Length: %lud\r\n"        // Always set Content-Length
         "\r\n"
 	      "%s",
