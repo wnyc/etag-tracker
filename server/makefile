@@ -1,5 +1,6 @@
 etag-sesison-server:
-	gcc etag-session-server.c mongoose.c -o etag-session-server -O3 
+	gcc -O3  -std=c99 etag-session-server.c mongoose.c -ldl -lpthread -o etag-session-server 
+
 
 clean:
 	rm *.o etag-session-server

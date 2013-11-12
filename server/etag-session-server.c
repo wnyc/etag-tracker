@@ -17,7 +17,6 @@ static int event_handler(struct mg_event *event) {
     if (strcmp(event->request_info->uri, "/session_id"))
       goto gimmie_a_404;
     for (int header=0; header < event->request_info->num_headers && header < 64; header++) {
-      printf("%s\n", event->request_info->http_headers[header].name);
       if (!strcmp(event->request_info->http_headers[header].name, 
 		  "If-None-Match"))
 	goto gimmie_a_304;
@@ -27,13 +26,11 @@ static int event_handler(struct mg_event *event) {
     
     int fd = open("/dev/urandom", O_RDONLY);
     if (!fd) {
-      printf("Boohiss\n");
       goto boohiss;
     }
     uint64_t etag;
     int bytes;
     if ((bytes=read(fd, &etag, sizeof(etag))) != sizeof(etag)) {
-      printf("%d bytes\n", bytes);
       goto boohiss;
     }
     close(fd);
