@@ -17,6 +17,7 @@ static int event_handler(struct mg_event *event) {
     if (strcmp(event->request_info->uri, "/session_id"))
       goto gimmie_a_404;
     for (int header=0; header < event->request_info->num_headers && header < 64; header++) {
+      printf("%s\n", event->request_info->http_headers[header].name);
       if (!strcmp(event->request_info->http_headers[header].name, 
 		  "If-None-Match"))
 	goto gimmie_a_304;
@@ -45,11 +46,11 @@ static int event_handler(struct mg_event *event) {
     mg_printf(event->conn,
         "HTTP/1.1 200 OK\r\n"
         "Content-Type: application/json\r\n"
-	"Content-Length: %d\r\n"        // Always set Content-Length
 	"Etag: %llx\r\n"
+	"Content-Length: %d\r\n"        // Always set Content-Length
         "\r\n"
 	      "%s",
-	      content_length, etag, content);
+	      etag, content_length, content);
 
     // Returning non-zero tells mongoose that our function has replied to
     // the client, and mongoose should not send client any more data.
